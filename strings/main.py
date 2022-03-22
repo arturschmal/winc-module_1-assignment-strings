@@ -17,15 +17,16 @@ report = (f'{player_scored_1} scored in the {goal_0}nd minute\n{player_scored_2}
 player = "Ronald Koeman"
 
 first_name = player[0:player.find(" ")]
+print(first_name)
 
 last_name_len = len(player[player.find(" ")+1:])
 print(last_name_len)
 
 name_short = f'{player[0]}. {player[player.find(" ")+1:]}'
+print(name_short)
 
 chant = int(len(first_name)-1) * f'{first_name}! ' + f'{first_name}!'
 print(chant)
-print(len(chant))
 
 good_chant = chant[-1] != " "
 print(good_chant)
