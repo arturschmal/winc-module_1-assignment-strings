@@ -4,47 +4,52 @@
 
 You need to master the following to complete this assignment:
 
-- Writing functions and function arguments;
-- SQL joins;
-- Database modelling;
+- Printing text and variables;
+- Casting types to other types;
+- Using and manipulating strings.
 
+We're going to do some reporting on a soccer match: the UEFA Euro 1988 Final, which was (at the time of writing) the last time the Dutch team became the champions. You can find all the information you're going to need on Wikipedia: UEFA Euro 1988 Final
 
-It is time to put all your SQL knowledge to the test. You will design a database for a fictional web marketplace called Betsy. Betsy is a site where people can sell homemade goods. This assignment will test your skills in modelling data as well as using the peewee ORM. The requirements for this assignment can be split into 2 parts: Modelling and Querying.
+**Part 1**
+Create a variable for every player that scored, for example:
+```
+example = 'Gut von Examplestein'
+```
 
-**Modelling**
-Define your models and initialize the database in models.py
+Create a variable for each minute of the match that a goal was scored in, for example:
+```
+goal_0 = 32
+```
 
-A key part of the Betsy webshop is the database. At its core are the users and the products they offer:
-- A user has a name, address data, and billing information.
-- Each user must be able to own a number of products.
-- The products must have a name, a description, a price per unit, and a quantity describing the amount in stock.
-- The price should be stored in a safe way; rounding errors should be impossible.
-- In order to facilitate search and categorization, a product must have a number of descriptive tags.
-- The tags should not be duplicated.
-- We want to be able to track the purchases made on the marketplace, therefore a transaction model must exist
-- You can assume that only users can purchase goods
-- The transaction model must link a buyer with a purchased product and a quantity of purchased items
-- As a bonus requirement, you must consider the various constraints for all fields and incorporate these constraints in the data model.
+Using the `+`-operator, create a string that reports on who scored when, according to the format:
+```
+<scorer_name> <when_they_scored>, <scorer_name> <when_they_scored>
+```
+The result should be stored in a variable `scorers`
 
-**Querying**
-In order to manage the database, the webshop must have a number of querying utlities. The scaffolding for the utilities can be found in main.py Extend the methods with the relevant functionality.
+Use f-strings or the `+`-operator to create a single string with information about who scored when in the format:
+```
+<scorer_name> scored in the <when_they_scored>nd minute
+<scorer_name> scored in the <when_they_scored>th minute
+```
+The result should be stored in a variable report.
 
-In this first iteration of the database we want to be able to:
+**Part 2**
 
-- Search for products based on a term. Searching for 'sweater' should yield all products that have the word 'sweater' in the name. This search should be case-insensitive
-- View the products of a given user.
-- View all products for a given tag.
-- Add a product to a user.
-- Remove a product from a user.
-- Update the stock quantity of a product.
-- Handle a purchase between a buyer and a seller for a given product
+Store the following values in the given variable. You can create temporary variables, like `last_name` to help you.
 
-**Test data**
-To test if your database and queries are working we want to be able to populate the database with data quickly.
+Choose a player that played in the soccer match and store his name as a string in the variable `player`.
 
-- Add a `populate_test_database` function that fills the database with example data that works with your queries
+`first_name`: use slicing and the `find`-method (help) to isolate and store the player's first name.
 
-In the next phase of development, the search functionality of the betsy webshop should be optimized. These requirements can be considered as a bonus:
+`last_name_len`: use `find`, slicing and `len` to isolate and store the length of their last name.
 
-- The search should target both the name and description fields.
-- Additionally the products should be indexed so that the time spent on querying them is minimized.
+`name_short`: isolate and store the player's name in this format:
+```
+G. von Examplestein
+```
+`chant`: this is what the crowd chants when it looks like your player is going to score a goal -- their first name plus an exclamation mark(`!`), x-times, where x is the number of characters in their first name. Because Gut has 3 letters in his name, we repeat his name 3 times. Make sure the last character of this string is not a space! For our example player:
+```
+Gut! Gut! Gut!
+```
+`good_chant`: Make super-sure the last character of chant is not a space by using the inequality operator (`!=`). This variable needs to be a boolean, not a string. You can create the value for this variable by comparing the last character of chant with a space character.
